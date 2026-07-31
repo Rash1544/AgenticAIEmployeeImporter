@@ -1,57 +1,56 @@
-#  Agentic AI Employee Importer
+# Agentic AI Employee Importer
 
-An autonomous AI agent that accepts a natural language instruction, determines which tools to execute, and automates the process of generating employee data, importing it into Microsoft Excel, and uploading it to Google Sheets.
+An autonomous AI-powered application that accepts natural language instructions, determines the required workflow using a planner, and automates employee data generation, Microsoft Excel processing, and Google Sheets integration.
 
 ---
 
-#  Features
+## Features
 
-- Accepts natural language commands.
-- Uses a planner to decide which tools to execute.
-- Generates realistic employee data using Faker.
-- Creates a CSV file with 20+ employee records.
+- Accepts natural language instructions.
+- Uses a planner to determine which tools should be executed.
+- Generates realistic employee data using the Faker library.
+- Creates a CSV file containing 20+ employee records.
 - Opens Microsoft Excel automatically.
-- Imports the CSV into Excel.
-- Saves the workbook as an XLSX file.
-- Uploads the same data to Google Sheets using the Google Sheets API.
+- Imports the CSV into Microsoft Excel.
+- Saves the workbook as an Excel (.xlsx) file.
+- Uploads employee data to Google Sheets using the Google Sheets API.
 - Displays execution progress and a final execution summary.
-- Handles errors gracefully.
+- Modular architecture for easy extension.
+- Includes graceful error handling.
 
 ---
 
-#  Project Architecture
+# Project Architecture
 
-```
-User Prompt
-      │
-      ▼
- Planner
-      │
-      ├───────────────┐
-      │               │
-      ▼               ▼
- CSV Tool        Excel Tool
-      │               │
-      └──────┬────────┘
-             ▼
-      Google Sheets Tool
-             │
-             ▼
-      Execution Summary
+```text
+                User Prompt
+                     │
+                     ▼
+                 Planner
+                     │
+        ┌────────────┴────────────┐
+        ▼                         ▼
+   CSV Generation Tool      Excel Import Tool
+                     │
+                     ▼
+          Google Sheets Upload Tool
+                     │
+                     ▼
+             Execution Summary
 ```
 
 ---
 
-#  Project Structure
+# Project Structure
 
-```
+```text
 AgenticAIEmployeeImporter/
 │
 ├── app.py
 ├── README.md
 ├── requirements.txt
+├── example_prompts.txt
 ├── .gitignore
-├── .env
 │
 ├── planner/
 │   └── planner.py
@@ -68,19 +67,19 @@ AgenticAIEmployeeImporter/
 │   ├── employees.csv
 │   └── employees.xlsx
 │
-├── memory/
 ├── logs/
+├── memory/
 ├── tests/
 └── config/
 ```
 
 ---
 
-#  Technologies Used
+# Technologies Used
 
 - Python 3.11
-- Pandas
 - Faker
+- Pandas
 - PyWin32
 - Google Sheets API
 - GSpread
@@ -88,27 +87,30 @@ AgenticAIEmployeeImporter/
 
 ---
 
-#  Prerequisites
+# Prerequisites
+
+Before running the project, ensure the following are installed:
 
 - Python 3.11+
-- Microsoft Excel (installed)
+- Microsoft Excel
 - Google Cloud Project
 - Google Sheets API enabled
 - Google Drive API enabled
-- Service Account credentials (`service_account.json`)
+- Google Service Account credentials
 
 ---
 
-#  Installation
+# Installation
 
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Rash1544/AgenticAIEmployeeImporter.git
+
 cd AgenticAIEmployeeImporter
 ```
 
-Install dependencies:
+Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -116,15 +118,15 @@ pip install -r requirements.txt
 
 ---
 
-#  Google Sheets Setup
+# Google Sheets Setup
 
 1. Create a Google Cloud Project.
 2. Enable:
    - Google Sheets API
    - Google Drive API
 3. Create a Service Account.
-4. Download the credentials JSON file.
-5. Rename it to:
+4. Download the Service Account credentials.
+5. Rename the file to:
 
 ```
 service_account.json
@@ -136,11 +138,11 @@ service_account.json
 credentials/
 ```
 
-7. Share your Google Sheet with the Service Account email address.
+7. Share your Google Sheet with the Service Account email.
 
 ---
 
-# ▶ Running the Project
+# Running the Project
 
 Run:
 
@@ -148,71 +150,74 @@ Run:
 python app.py
 ```
 
-Enter a natural language command such as:
+If using a Conda environment:
 
-```
-Create a sample employee CSV and import it into Excel and Google Sheets.
-```
+```bash
+conda activate agentic_ai
 
-or
-
-```
-Generate employee CSV, Excel and Google Sheet.
+python app.py
 ```
 
 ---
 
-#  Workflow
+# Example Prompts
 
-The AI Agent performs the following steps autonomously:
+The planner accepts natural language instructions such as:
+
+- Create a sample employee CSV and import it into Excel and Google Sheets.
+
+- Generate employee data and upload it to Google Sheets.
+
+- Create employee records, save them as Excel, and update Google Sheets.
+
+- Generate at least 20 employee records, convert them into an Excel workbook, and upload them to Google Sheets.
+
+- Generate employee CSV, Excel workbook, and Google Sheet.
+
+---
+
+# Workflow
+
+The application autonomously performs the following steps:
 
 1. Accepts a natural language instruction.
-2. Determines which tools need to be executed.
-3. Generates employee CSV data.
-4. Opens Microsoft Excel.
-5. Imports the CSV into Excel.
-6. Saves the workbook.
-7. Connects to Google Sheets.
-8. Uploads the CSV data.
-9. Displays an execution summary.
+2. Planner determines which tools need to be executed.
+3. Generates employee data.
+4. Creates a CSV file.
+5. Opens Microsoft Excel.
+6. Imports the CSV into Excel.
+7. Saves the workbook as an Excel file.
+8. Connects to Google Sheets.
+9. Uploads employee data.
+10. Displays an execution summary.
 
 ---
 
-#  Sample CSV
+# Sample CSV
 
 | Employee ID | Name | Department | Email | Salary |
-|-------------|------|------------|-------|--------|
+|-------------|------|------------|------------------|--------|
 | EMP001 | John Smith | Sales | john@example.com | 65000 |
 | EMP002 | Alice Brown | HR | alice@example.com | 72000 |
 
 ---
 
-#  Example Prompts
+# Sample Output
 
-```
-Create a sample employee CSV and import it into Excel and Google Sheets.
-```
+```text
+==========================================================
 
-```
-Generate employee CSV, Excel and Google Sheet.
-```
+            Agentic AI Employee Importer
 
-```
-Create employee data and upload it to Google Sheets.
-```
-
----
-
-#  Sample Output
-
-```
-Agentic AI Employee Importer
+==========================================================
 
 ✓ CSV Generated Successfully
 
 ✓ Excel Workbook Created Successfully
 
 ✓ Google Sheet Updated Successfully
+
+==========================================================
 
 Execution Summary
 
@@ -221,20 +226,51 @@ CSV File      : output/employees.csv
 Excel File    : output/employees.xlsx
 
 Google Sheet  : https://docs.google.com/...
+
+==========================================================
 ```
 
 ---
 
-#  Demo
+# Output Files
 
-The demo video demonstrates:
+The generated files are automatically saved inside the **output** directory.
 
+```
+output/
+│
+├── employees.csv
+└── employees.xlsx
+```
+
+---
+
+# Demo
+
+The demonstration video includes:
+
+- Project overview
+- Folder structure
+- Planner explanation
 - Running the application
-- Entering a natural language prompt
-- Automatic CSV generation
-- Excel import
+- Natural language prompt execution
+- CSV generation
+- Excel automation
 - Google Sheets upload
 - Execution summary
+
+---
+
+# Future Improvements
+
+Possible future enhancements include:
+
+- Support for JSON and XML exports.
+- Database integration (MySQL/PostgreSQL).
+- OpenAI-powered intelligent planning.
+- Web interface using Flask or Streamlit.
+- PDF report generation.
+- Additional productivity tools.
 
 ---
 
@@ -242,4 +278,4 @@ The demo video demonstrates:
 
 **Rashmi Gulati**
 
-Agentic AI Developer Technical Assessment
+Submitted as part of the **Agentic AI Developer Technical Assessment**.
