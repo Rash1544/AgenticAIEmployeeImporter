@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+
+.env
+
+credentials/service_account.json
+
+output/*.csv
+output/*.xlsx
+
+logs/
+
+.vscode/
+
+.idea/
+
+*.log

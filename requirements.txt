@@ -1,0 +1,8 @@
+faker
+pandas
+openpyxl
+pywin32
+gspread
+google-auth
+google-auth-oauthlib
+loguru

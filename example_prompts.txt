@@ -1,0 +1,18 @@
+Agentic AI Developer Technical Assessment
+Example Prompts
+
+Prompt 1
+---------
+Create a sample employee CSV and import it into Excel and Google Sheets.
+
+Prompt 2
+---------
+Generate sample employee data, save it as a CSV, import it into Microsoft Excel, and upload it to Google Sheets.
+
+Prompt 3
+---------
+Create employee records with realistic data and automatically import them into Excel and Google Sheets.
+
+Prompt 4
+---------
+Generate an employee CSV containing at least 20 records, convert it into an Excel workbook, and upload the same data to Google Sheets.
